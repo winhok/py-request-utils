@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "utils"
+version = "0.1.0"
+description = ""
+authors = ["winhok <2063685743@qq.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10.0"
+requests = "^2.32.3"
+jmespath = "^1.0.1"
+loguru = "^0.7.2"
+pytest = "^8.3.3"
+deepdiff = "^8.0.1"
+jsonschema = "^4.23.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

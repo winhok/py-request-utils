@@ -1,0 +1,5 @@
+# Core Dependencies
+requests==2.32.3
+jmespath==1.0.1
+loguru==0.7.2
+deepdiff==8.0.1
