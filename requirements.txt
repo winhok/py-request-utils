@@ -3,3 +3,10 @@ requests==2.32.3
 jmespath==1.0.1
 loguru==0.7.2
 deepdiff==8.0.1
+jsonschema==4.23.0
+redis==5.2.0
+faker==33.1.0
+hypothesis==6.121.2
+allure-pytest==2.13.5
+allure-combine==1.0.11
+pycryptodome==3.21.0

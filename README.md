@@ -47,14 +47,63 @@
   - [x] Schema 验证
   - [x] 正则匹配
 
-### 4. 测试工具（开发中）
+### 4. 缓存工具 ✅
 
-- [ ] 测试报告生成器
-- [ ] 数据驱动支持
-- [ ] 环境配置管理
-- [ ] 数据库操作工具
-- [ ] 缓存管理
-- [ ] 随机数生成器
+- [x] 多种缓存实现
+  - [x] Redis 缓存
+  - [x] LRU 内存缓存
+  - [x] 磁盘缓存
+  - [x] JSON文件缓存
+- [x] 缓存装饰器
+  - [x] 函数结果缓存
+  - [x] 类方法结果缓存
+  - [x] 依赖函数缓存
+- [x] 缓存策略
+  - [x] 过期时间控制
+  - [x] 最大容量控制
+  - [x] 自动清理机制
+
+### 5. 加密解密工具 ✅
+
+- [x] 对称加密
+  - [x] AES 加密
+  - [x] DES 加密
+- [x] 非对称加密
+  - [x] RSA 加密
+- [x] Hash 算法
+  - [x] MD5
+  - [x] SHA256
+- [x] Base64 编码解码
+
+### 6. 随机测试数据生成 ✅
+
+- [x] 基础数据生成
+  - [x] 数字类型
+  - [x] 字符串类型
+  - [x] 日期时间类型
+  - [x] 布尔类型
+- [x] 业务数据生成
+  - [x] 个人信息
+  - [x] 地址信息
+  - [x] 公司信息
+  - [x] 网络信息
+
+### 7. 测试报告工具 ✅
+
+- [x] 报告生成
+  - [x] 离线HTML报告
+  - [x] 资源文件内联
+  - [x] 报告打包
+- [x] 报告发送
+  - [x] 钉钉机器人
+  - [x] 企业微信机器人
+  - [x] 邮件发送
+- [x] 报告管理
+  - [x] 自动清理历史报告
+  - [x] 报告统计信息
+  - [x] 报告模板定制
+
+
 
 ## 快速开始
 
@@ -144,6 +193,65 @@ expect(response)\
     .json.at("user.age").to_be_greater_than(18)
 ```
 
+
+#### 随机数据生成使用示例
+
+```python
+from utils.random_util import PersonGenerator, AddressGenerator
+
+# 创建生成器实例
+person = PersonGenerator()
+address = AddressGenerator()
+
+# 生成个人信息
+name = person.name()
+phone = person.phone_number()
+email = person.email()
+
+# 生成地址信息
+province = address.province()
+city = address.city()
+street = address.street_address()
+```
+
+#### 报告生成和发送使用示例
+
+```python
+from utils.report_util import ReportManager
+
+# 创建报告管理器
+report_manager = ReportManager()
+
+# 生成报告
+report_path = report_manager.generate_offline_report()
+
+# 发送报告
+report_manager.send_report(
+    report_path=report_path,
+    title="测试报告",
+    to_dingtalk=True,
+    to_wechat=True,
+    to_email="test@example.com"
+)
+```
+
+#### 缓存使用示例
+
+```python
+from utils.cache_util import RedisCache, LRUCache
+
+# 创建缓存实例
+redis_cache = RedisCache()
+memory_cache = LRUCache()
+
+# 使用缓存装饰器
+@redis_cache.cache(ttl=3600)
+def get_user_info(user_id):
+    # 获取用户信息的逻辑
+    pass
+```
+
+
 ## 项目结构
 
 ```
@@ -151,8 +259,13 @@ project/
 ├── utils/
 │   ├── __init__.py
 │   ├── log_util.py      # 日志工具
-│   └── request_util.py  # HTTP请求工具
-│   └── assert_util.py   # 断言工具
+│   ├── request_util.py  # HTTP请求工具
+│   ├── assert_util.py   # 断言工具
+│   ├── cache_util.py    # 缓存工具
+│   ├── encrypt_util.py  # 加密解密工具
+│   ├── random_util.py   # 随机数据工具
+│   ├── send_util.py     # 消息发送工具
+│   └── report_util.py   # 报告工具
 ├── tests/
 │   └── __init__.py
 ├── pyproject.toml
@@ -162,25 +275,18 @@ project/
 ## 开发路线图
 
 - [x] 日志系统
-  - [x] 基础日志功能
-  - [x] 装饰器支持
-  - [x] 文件轮转
 - [x] HTTP 请求模块
-  - [x] 基础请求方法
-  - [x] 会话管理
-  - [x] 重试机制
-  - [x] curl 命令生成
 - [x] 断言工具
-  - [x] 断言结果管理
-  - [x] 丰富的断言方法
-  - [x] 自定义错误消息
-  - [x] 支持 JSON 数据断言
-- [ ] 测试报告生成
+- [x] 缓存系统
+- [x] 加密解密工具
+- [x] 随机数据生成
+- [x] 消息发送工具
+- [x] 测试报告工具
 - [ ] 数据驱动功能
 - [ ] 配置管理系统
 - [ ] 数据库工具
-- [ ] 缓存系统
-- [ ] 随机数工具
+
+
 
 ## 贡献指南
 
